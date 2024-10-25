@@ -32,17 +32,17 @@ if (nameElement && emailElement && phoneElement && educationElement && experienc
 
     const resumeOutput = `
     <h2>Resume</h2>
-    <p><strong>Name:</strong>${name} </p>
-    <p><strong>Email:</strong>${email} </p>
-    <p><strong>Phone</strong>${phone} </p>
+    <p><strong>Name:</strong> ${name} </p>
+    <p><strong>Email:</strong> ${email} </p>
+    <p><strong>Phone Number :</strong> ${phone} </p>
     
-   <h2>Education</h2>
+   <h3>Education</h3>
    <p>${education}</p>
     
-  <h2>Experience</h2>
+  <h3>Experience</h3>
    <p>${experience}</p>
     
-  <h2>Skills</h2>
+  <h3>Skills</h3>
    <p>${skills}</p>
     `;
 
