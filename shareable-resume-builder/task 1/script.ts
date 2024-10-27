@@ -3,8 +3,8 @@
 document.getElementById('resumeForm')?.addEventListener('submit', function(event){
     event.preventDefault();
 
-    const profilePictureInput =document.getElementById('profilePicture') as HTMLInputElement; 
 
+const profilePictureInput =document.getElementById('profilePicture') as HTMLInputElement; 
     //type assertion
 
     const nameElement = document.getElementById('name') as HTMLInputElement;
@@ -15,7 +15,13 @@ document.getElementById('resumeForm')?.addEventListener('submit', function(event
     const skillsElement = document.getElementById('skills') as HTMLInputElement;
 
 
-if (profilePictureInput && nameElement && emailElement && phoneElement && educationElement && experienceElement && skillsElement){
+    //** 
+
+    const userElement = document.getElementById("username") as HTMLInputElement;
+
+  
+if (profilePictureInput && nameElement && emailElement && phoneElement && educationElement && experienceElement && skillsElement && userElement
+){
 
     const name = nameElement.value;
     const email = emailElement.value;
@@ -24,11 +30,15 @@ if (profilePictureInput && nameElement && emailElement && phoneElement && educat
     const experience = experienceElement.value;
     const skills = skillsElement.value;
 
-
-
 // picture elements
 const profilePictureFile = profilePictureInput.files?.[0];
 const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) : '';
+
+
+    //**
+    const username = userElement.value;
+    const uniquePath = `resumes/${username.replace(/\s+/g, '_')}_cv.html`
+
 
 
 
@@ -51,11 +61,26 @@ const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictur
    <p id="edit-skills" class="editable">${skills}</p>
     `;
 
+
+
+//**
+const downloadLink = document.createElement('a')
+downloadLink.href ='data:text/html;charset=utf-8,'+ encodeURIComponent(resumeOutput)
+
+downloadLink.download = uniquePath;
+downloadLink.textContent = 'Download Your 2024 Resume';
+
+
+
+
     const resumeOutputElement = document.getElementById('resumeOutput')
     if (resumeOutputElement){
         resumeOutputElement.innerHTML = resumeOutput 
+//**
+resumeOutputElement.appendChild(downloadLink)
     makeEditable();
     }
+    
 }else {
     console.error('one or more output elements are missing')
 }
